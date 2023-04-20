@@ -1,0 +1,22 @@
+<!-- 底部播放器 -->
+<view class="player">
+    <image bindtap="changeItem" data-item='1' class="player-cover" src="{{play.coverImgUrl}}" />
+    <view class="player-info">
+      <view class="player-info-title">{{play.title}}</view>
+      <view class="player-info-singer">{{play.singer}}</view>
+    </view>
+  <view class="player-controls">
+    
+    <image src="/images/list.png" bindtap="changeItem" data-item="2"/> 
+    <!-- 循环方式 -->
+    <image wx:if="{{loop == 'single'}}" src="/images/danqu.png" bindtap="loopOption" data-index = '0'></image>
+    <image wx:elif="{{loop == 'cycle'}}" src="/images/liebiao.png" bindtap="loopOption" data-index = '2'></image>
+    <image wx:else  src="/images/shuiji.png" bindtap="loopOption" data-index = '1'></image>
+    
+    <!-- 播放或暂停 -->
+    <image wx:if="{{state =='paused'}}" src="/images/02.png" bindtap="play" />
+    <image wx:else src="/images/02stop.png" bindtap="pause" />
+    <!-- 下一曲 -->
+    <!-- <image src="/images/03.png" bindtap="next" /> -->
+  </view>
+</view>

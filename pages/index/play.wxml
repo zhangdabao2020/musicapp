@@ -1,0 +1,48 @@
+<!-- 播放器 -->
+<view class="content-play">
+  <!-- 显示音乐信息 -->
+  <view class="content-play-info">
+    <text>{{play.title}}</text>
+    <view>—— {{play.singer}} ——</view>
+  </view>
+  <!-- 显示专辑封面 -->
+  <view wx:if="{{viewLrc == 'cover'}}" class="content-play-cover" bindtap="changCoverOrLrc">
+    <image src="{{play.coverImgUrl}}" style="animation-play-state:{{state}}" />
+  </view>
+  <!-- 显示歌词 -->
+  <view wx:else class="content-play-lrc" bindtap="changCoverOrLrc">
+      <view wx:if='{{isScroll}}' class="line" style="width:100%;color:white;border:1px solid rgba(244,244,244,0.2);">
+        <view style="margin:0rpx 20rpx;" >{{locationShowTime}}</view>
+        <view  style="color:red;height:2rpx;width:100%;background:green;"></view>
+        <view style="margin:0rpx 20rpx;" >
+          <image src="/images/01.png" style="height:40rpx;width:40rpx;z-index:999;" catchtap="playScroll"/>
+        </view>
+      </view>
+      <scroll-view scroll-y style="height:100%" scroll-with-animation scroll-top="{{locationIndex*28}}" bindscroll="scroll" bindtouchstart="touchstart" bindtouchend="touchend">
+       
+        <view wx:for="{{lrc}}" wx:key="index" style="font-size: 12pt;;text-align:center;margin:15rpx 0rpx;color:#696969;{{location===index?'color:#B8860B;':''}}">{{item}}</view>
+       
+      </scroll-view>
+  </view>
+  <!-- 播放控制图标 -->
+ 
+  <!-- 显示播放进度和时间 -->
+  <view>
+    <view class="content-play-icon">
+        <image class=".content-play-icon-image" src="/images/03-2.png" bindtap="pre"></image>
+        <image wx:if="{{play.unfavor == '1'}}" class=".content-play-icon-image" src="/images/ufavor.png" bindtap="opFavor"></image>
+        <image wx:else class=".content-play-icon-image" src="/images/favor.png" bindtap="opFavor" ></image>
+        
+        <image class=".content-play-icon-image" src="/images/03.png" bindtap="next"></image>
+    </view>
+    <view class="content-play-progress">
+    <text>{{play.currentTime}}</text>
+    <view >
+      <slider bindchange="sliderChange" activeColor="#d33a31" block-size="12" backgroundColor="#dadada" value="{{play.percent}}" />
+    </view>
+    <text>{{play.duration}}</text>
+    </view>
+  </view>
+
+
+</view>

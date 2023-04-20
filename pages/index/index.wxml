@@ -1,0 +1,93 @@
+<!-- 标签页标题 -->
+<view class="tab">
+  <view class="tab-item {{tab==0?'active':''}}"  bindtap="changeItem" data-item="0">
+    <button id="userlogin" wx:if="{{!hasUserInfo}}" open-type="getUserInfo"
+     bindgetuserinfo="getUserInfo"> 登录 </button>
+    <view class="tab" wx:else>
+      <!-- 用户头像 -->
+      <image class="imgUser" src="{{userInfo.avatarUrl}}"></image>
+      <!-- 用户昵称 -->
+      <text>嗨，{{userInfo.nickName}}！</text>
+    </view>
+  </view>
+<view class="tab-item-search" >  
+    <view class="tab">
+      <input class="tab-item-input"  type="text" confirm-type="search" placeholder-class="placeholderstyle" placeholder="搜索" bindconfirm="searchMusic"/>
+      <!-- <icon  type="search" size="18"></icon> -->
+    </view>
+ 
+</view>
+
+<!--   <view class="tab-item {{tab==1?'active':''}}" bindtap="changeItem" data-item="1">播放器</view>
+  <view class="tab-item {{tab==2?'active':''}}" bindtap="changeItem" data-item="2">播放列表</view> -->
+</view>
+<!-- 内容区域 -->
+<view wx:if="{{hasUserInfo && userright}}" class="content">
+  <swiper current="{{item}}" bindchange="changeTab">
+    <swiper-item>
+      <!-- 内容滚动区域 -->
+      <scroll-view class="content-info" scroll-y>
+        <!-- 轮播图 -->
+        <swiper class="content-info-slide" indicator-color="rgba(255,255,255,.5)" indicator-active-color="#fff" indicator-dots circular autoplay>
+          <swiper-item>
+            <image src="http://localhost:5050/play/bnn1.jpg" />
+          </swiper-item>
+          <swiper-item>
+            <image src="http://localhost:5050/play/bnn2.jpg" />
+          </swiper-item>
+          <swiper-item>
+            <image src="http://localhost:5050/play/bnn3.jpg" />
+          </swiper-item>
+        </swiper>
+        <!-- 功能按钮 -->
+        <view class="content-info-portal">
+          <view bindtap="setViewMusicList" data-item="1" >
+           <image src="/images/04.png" />
+            <text>我的收藏</text> 
+          </view>
+          <view bindtap="setViewMusicList" data-item="2" >
+            <image src="/images/05.png" />
+            <text>每日AI推荐</text>
+          </view>
+          <view bindtap="setViewMusicList" data-item="3" >
+            <image src="/images/06.png" />
+            <text>播放排行榜</text>
+          </view>
+        </view>
+        <!-- 热门音乐 -->
+          <view class="content-info-list">
+          <view class="list-title" wx:if="{{viewItem == 1}}" > 我的收藏 </view>
+          <view  class="list-title" wx:elif="{{viewItem == 2}}" data-item="2"> AI推荐 </view>
+          <view class="list-title" wx:elif="{{viewItem == 3}}"  data-item="3"> 播放排行榜 </view>
+          <view class="list-title" wx:elif="{{viewItem == 4}}"  data-item="4"> 搜索结果 </view>
+          
+          <view class="list-inner">
+            <view wx:for="{{viewMusicList}}" wx:key="id" class="list-item" bindtap="viewChange" data-index="{{index}}" >
+              <image src="{{item.coverImgUrl}}" />
+              <view>{{item.title}}</view>
+            </view>
+            
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <!-- 播放器页面 -->
+      <include src="play.wxml" />
+    </swiper-item>
+    <swiper-item>
+      <include src="playlist.wxml" />
+    </swiper-item>
+
+<!--     我的收藏页面 -->
+<!--     <swiper-item>
+      <include src="mylove.wxml"></include>
+    </swiper-item> -->
+
+  </swiper>
+</view>
+<view wx:else class="content">
+  <view wx:if="{{!hasUserInfo}}" class="content-login"><text>请登录!!</text></view>
+  <view wx:if="{{!userright}}" class="content-login"><text>联系管理员授权!!token：{{token}}</text></view>
+</view>
+<include wx:if="{{userright}}" src="../commonPage/player.wxml"></include>

@@ -1,0 +1,79 @@
+<!--pages/favor/favor.wxml-->
+<!-- 标签页标题 -->
+<view class="tab">
+  <view class=".tab-item">我的收藏</view>
+</view>
+<!-- 内容区域 -->
+ <view class="content">
+      <!-- 内容滚动区域 -->
+      <scroll-view class="content-info" scroll-y>
+        <!-- 热门音乐 -->
+        <view class="content-info-list">
+        
+          <view class="list-inner">
+            <view class="list-item">
+              <image src="/images/cover.jpg" />
+              <view>紫罗兰</view>
+            </view>
+            <view class="list-item">
+              <image src="/images/cover.jpg" />
+              <view>五月之歌</view>
+            </view>
+            <view class="list-item">
+              <image src="/images/cover.jpg" />
+              <view>菩提树</view>
+            </view>
+            <view class="list-item">
+              <image src="/images/cover.jpg" />
+              <view>欢乐颂</view>
+            </view>
+            <view class="list-item">
+              <image src="/images/cover.jpg" />
+              <view>安魂曲</view>
+            </view>
+            <view class="list-item">
+              <image src="/images/cover.jpg" />
+              <view>摇篮曲</view>
+            </view>
+            <view class="list-item">
+              <image src="/images/cover.jpg" />
+              <view>紫罗兰</view>
+            </view>
+            <view class="list-item">
+              <image src="/images/cover.jpg" />
+              <view>五月之歌</view>
+            </view>
+            <view class="list-item">
+              <image src="/images/cover.jpg" />
+              <view>菩提树</view>
+            </view>
+            <view class="list-item">
+              <image src="/images/cover.jpg" />
+              <view>欢乐颂</view>
+            </view>
+            <view class="list-item">
+              <image src="/images/cover.jpg" />
+              <view>安魂曲</view>
+            </view>
+            <view class="list-item">
+              <image src="/images/cover.jpg" />
+              <view>摇篮曲</view>
+            </view>
+            <view class="list-item">
+              <image src="/images/cover.jpg" />
+              <view>紫罗兰</view>
+            </view>
+            <view class="list-item">
+              <image src="/images/cover.jpg" />
+              <view>五月之歌</view>
+            </view>
+            <view class="list-item">
+              <image src="/images/cover.jpg" />
+              <view>菩提树</view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+ </view>
+<!-- 底部播放 -->
+<include src="/pages/commonPage/player.wxml"></include>
